@@ -63,6 +63,7 @@ public class giaodien extends JFrame {
 		scrollPane.setBounds(600, 150, 867, 307);
 		contentPane.add(scrollPane);
 		
+		
 		///HEADER
 		JLabel lblNewLabel = new JLabel("QUẢN LÝ SINH VIÊN");
 		Font fontLb = new Font(lblNewLabel.getFont().getName(), Font.PLAIN, 20);
@@ -134,5 +135,6 @@ public class giaodien extends JFrame {
 				}
 			}
 		});
-	}
+
+}
 }
