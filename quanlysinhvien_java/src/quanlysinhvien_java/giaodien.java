@@ -21,12 +21,12 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
+
 import java.util.Iterator;
-=======
+
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> Phat
+
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -69,7 +69,7 @@ public class giaodien extends JFrame {
 		g.drawLine(50, 600, 1400, 600);
 
 	}
-	
+
 	void Tieude() {
 		Vtieude.add("MÃ SV");
 		Vtieude.add("NGÀNH");
