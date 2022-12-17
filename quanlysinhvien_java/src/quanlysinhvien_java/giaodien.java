@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.Color;
@@ -21,8 +22,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-
+import javax.swing.table.TableRowSorter;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -122,14 +122,33 @@ public class giaodien extends JFrame {
 		JButton btntim = new JButton("TÌM");
 		btntim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
+				
+				if (txtmasvtim.getText().toString().isEmpty()) {
+					JOptionPane.showMessageDialog(contentPane,
+			                "VUI LÒNG NHẬP MÃ SỐ SINH VIÊN MUỐN TÌM",
+			                "THÔNG BÁO",
+			                JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					
+				String query = txtmasvtim.getText().toString();
+				TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>((DefaultTableModel) table.getModel());
+				table.setRowSorter(tr);
+				tr.setRowFilter(RowFilter.regexFilter(query));
+				}
+			}	
 		});
 		btntim.setBounds(1220, 32, 75, 28);
 		contentPane.add(btntim);
 		
 		JButton btnhuytim = new JButton("HỦY TÌM");
-		btntim.addActionListener(new ActionListener() {
+		btnhuytim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
+				txtmasvtim.setText("");
+				String query = txtmasvtim.getText().toString();
+				TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>((DefaultTableModel) table.getModel());
+				table.setRowSorter(tr);
+				tr.setRowFilter(RowFilter.regexFilter(query));
 			}
 		});
 		btnhuytim.setBounds(1300, 32, 100, 28);
@@ -283,9 +302,7 @@ public class giaodien extends JFrame {
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null, null, null},
-			},
+			null,
 			new String[] {
 				"MÃ SV", "NGÀNH", "HỌ TÊN", "NGÀY SINH", "GIỚI TÍNH", "ĐIỂM 1", "ĐIỂM 2", "ĐIỂM 3", "ĐIỂM TB", "XẾP HẠNG"
 			}
