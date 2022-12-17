@@ -2,20 +2,21 @@ package quanlysinhvien_java;
 
 public class SinhvienModel {
 	
-	public SinhvienModel(String mssv, String hoten, String nsinh, String gtinh, String cnghanh, String diem1,
-			String diem2, String diem3) {
+
+	private String Mssv;
+	public SinhvienModel(String mssv, String cnghanh, String hoten, String nsinh, String gtinh, float diem1,
+			float diem2, float diem3) {
 		super();
 		Mssv = mssv;
+		Cnghanh = cnghanh;
 		Hoten = hoten;
 		Nsinh = nsinh;
 		Gtinh = gtinh;
-		Cnghanh = cnghanh;
 		Diem1 = diem1;
 		Diem2 = diem2;
 		Diem3 = diem3;
 	}
 
-	private String Mssv;
 	private String Hoten;
 
 	private String Nsinh;
@@ -24,11 +25,15 @@ public class SinhvienModel {
 
 	private String Cnghanh;
 
-	private String Diem1;
+	private float Diem1;
 
-	private String Diem2;
+	private float Diem2;
 
-	private String Diem3;
+	private float Diem3;
+	
+	private float Diemtb;
+	
+	private String Xephang;
 
 	public String getMssv() {
 		return Mssv;
@@ -70,29 +75,63 @@ public class SinhvienModel {
 		Cnghanh = cnghanh;
 	}
 
-	public String getDiem1() {
+	public float getDiem1() {
 		return Diem1;
 	}
 
-	public void setDiem1(String diem1) {
+	public void setDiem1(float diem1) {
 		Diem1 = diem1;
 	}
 
-	public String getDiem2() {
+	public float getDiem2() {
 		return Diem2;
 	}
 
-	public void setDiem2(String diem2) {
+	public void setDiem2(float diem2) {
 		Diem2 = diem2;
 	}
 
-	public String getDiem3() {
+	public float getDiem3() {
 		return Diem3;
 	}
 
-	public void setDiem3(String diem3) {
+	public void setDiem3(float diem3) {
 		Diem3 = diem3;
 	}
+
+	public float getDiemtb() {
+		
+		Diemtb = (Diem1 + Diem2 + Diem3)/3;
+		return Diemtb;
+	}
+
+	public void setDiemtb(float diemtb) {
+		Diemtb = diemtb;
+	}
+
+	public String getXephang() {
+		
+		if (Diemtb >= 9) {
+            Xephang = "Xuất sắc";
+        } else if ((Diemtb >= 8) && (Diemtb < 9)) {
+            Xephang = "Giỏi";
+        } else if ((Diemtb >= 6.5) && (Diemtb < 8)) {
+            Xephang = "Khá";
+        } else if ((Diemtb > 5) && (Diemtb < 6.5)) {
+            Xephang = "Trung bình";
+        } else {
+            Xephang = "Yếu";
+        }
+		return Xephang;
+	}
+
+	public void setXephang(String xephang) {
+		Xephang = xephang;
+	}
+
+	
+
+	
 
 	
 	

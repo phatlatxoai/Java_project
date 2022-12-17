@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
@@ -43,6 +44,9 @@ public class giaodien extends JFrame {
 	Vector Vnoidung=new Vector();
 	Vector Vdong;
 	
+	char nganh = 'C';
+	String khoa = "CNTT";
+	
 	DefaultTableModel dtm = new DefaultTableModel();
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -52,7 +56,39 @@ public class giaodien extends JFrame {
 
 	}
 	
+	void Tieude() {
+		Vtieude.add("MÃ SV");
+		Vtieude.add("NGÀNH");
+		Vtieude.add("HỌ TÊN");
+		Vtieude.add("NGÀY SINH");
+		Vtieude.add("GIỚI TÍNH");
+		Vtieude.add("ĐIỂM 1");
+		Vtieude.add("ĐIỂM 2");
+		Vtieude.add("ĐIỂM 3");
+		Vtieude.add("ĐIỂM TB");
+		Vtieude.add("XẾP HẠNG");
+		
+	}
+	
+	void Nhap(SinhvienModel svmd) {
+		Vdong = new Vector();
+		Vdong.add(svmd.getMssv());
+		Vdong.add(svmd.getCnghanh());
+		Vdong.add(svmd.getHoten());
+		Vdong.add(svmd.getNsinh());
+		Vdong.add(svmd.getGtinh());
+		Vdong.add(svmd.getDiem1());
+		Vdong.add(svmd.getDiem2());
+		Vdong.add(svmd.getDiem3());
+		Vdong.add(svmd.getDiemtb());
+		Vdong.add(svmd.getXephang());
+		Vnoidung.add(Vdong);
+		
+	}
+	
+	
 	public giaodien() {
+		Tieude();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(20, 20, 1500, 800);
 		contentPane = new JPanel();
@@ -174,6 +210,7 @@ public class giaodien extends JFrame {
 			}
 		});        
         contentPane.add(radioBtn1);
+        radioBtn1.setSelected(isFocusable());
         contentPane.add(radioBtn2);
         
         JButton btnCNTT = new JButton("CNTT");
@@ -181,10 +218,18 @@ public class giaodien extends JFrame {
         btnCNTT.setBackground(Color.LIGHT_GRAY);
         btnCNTT.setBounds(200, 355, 75, 28);
 		contentPane.add(btnCNTT);
+		btnCNTT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+		});
+		
         
         JButton btnKINHTE = new JButton("KINH TẾ");
         btnKINHTE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String nganh = btnKINHTE.getText().toString();
+				
 			}
 		});
 
@@ -197,6 +242,8 @@ public class giaodien extends JFrame {
 				lbl6.setText("ĐIỂM HTML");
 				lbl7.setText("ĐIỂM CSS");
 				lbl8.setText("ĐIỂM JAVA");
+				nganh='C';
+				khoa = "CNTT";
 			}
 		});
 		btnKINHTE.addActionListener(new ActionListener() {
@@ -206,6 +253,9 @@ public class giaodien extends JFrame {
 				lbl6.setText("ĐIỂM MARKETING");
 				lbl7.setText("ĐIỂM NLKT");
 				lbl8.setText("ĐIỂM KINH TẾ VĨ MÔ");
+				nganh='K';
+				khoa = "KINH TẾ";
+						
 			}
 		});
         
@@ -242,6 +292,7 @@ public class giaodien extends JFrame {
 		));
 		table.getColumnModel().getColumn(4).setPreferredWidth(81);
 		scrollPane.setViewportView(table);
+		
 		///MIDDLE
 		
 		
@@ -249,9 +300,46 @@ public class giaodien extends JFrame {
 		
 		
 		///FOOTER
+		
 		 JButton btnTHEM = new JButton("THÊM");
 		 btnTHEM.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if(txtmasv.getText().isEmpty() || txthoten.getText().isEmpty() || txtngaysinh.getText().isEmpty() || txtd2.getText().isEmpty() || txtd3.getText().isEmpty() || txtd1.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(contentPane,
+				                "VUI LÒNG NHẬP HẾT THÔNG TIN TRƯỚC KHI THÊM",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+				    }
+					else if(txtmasv.getText().toString().charAt(0) != 'C'&&txtmasv.getText().toString().charAt(0) != 'c'&& txtmasv.getText().toString().charAt(0) != 'k'&& txtmasv.getText().toString().charAt(0) != 'K' ) {
+						JOptionPane.showMessageDialog(contentPane,
+				                "MÃ SINH VIÊN PHẢI BẮT ĐẦU BẰNG CÁC KÝ TỰ [C,c,K,K]",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+					}
+					else if(txtmasv.getText().toString().toUpperCase().charAt(0) != nganh ) {
+						JOptionPane.showMessageDialog(contentPane,
+				                "MÃ SINH VIÊN PHẢI TRÙNG VỚI NGÀNH BẠN CHỌN",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						String masv = txtmasv.getText();
+						String hoten = txthoten.getText();
+						String ngaysinh = txtngaysinh.getText();
+						String gioitinh = "";
+						if(radioBtn1.isSelected()) {
+							gioitinh = "Nam";
+						}
+						if(radioBtn2.isSelected()) {
+							gioitinh = "Nữ";
+						}
+						float diem1 = Float.parseFloat(txtd1.getText());
+						float diem2 = Float.parseFloat(txtd2.getText());
+						float diem3 = Float.parseFloat(txtd3.getText());
+						SinhvienModel svmd = new SinhvienModel(masv, khoa, hoten, ngaysinh, gioitinh, diem1, diem2, diem3);
+						Nhap(svmd);
+						table.setModel(new DefaultTableModel(Vnoidung, Vtieude));
+					}
+					
 				}
 			});
 
@@ -324,6 +412,7 @@ public class giaodien extends JFrame {
 			 JButton btnDIEMTB = new JButton("ĐIỂM TB");
 			 btnDIEMTB.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 					}
 				});
 
