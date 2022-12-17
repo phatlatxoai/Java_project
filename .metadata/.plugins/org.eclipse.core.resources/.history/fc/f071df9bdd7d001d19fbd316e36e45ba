@@ -130,7 +130,7 @@ public class giaodien extends JFrame {
 				try {
 					giaodien frame = new giaodien();
 					frame.setVisible(true);
-					Color mycolor = new Color(204, 204,255);
+					Color mycolor = new Color(204, 153,255);
 					frame.getContentPane().setBackground(mycolor);
 				} catch (Exception e) {
 					e.printStackTrace();

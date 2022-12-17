@@ -55,6 +55,7 @@ public class giaodien extends JFrame {
 		setBounds(20, 20, 1500, 800);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
+		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		setContentPane(contentPane);
@@ -130,8 +131,6 @@ public class giaodien extends JFrame {
 				try {
 					giaodien frame = new giaodien();
 					frame.setVisible(true);
-					Color mycolor = new Color(204, 204,255);
-					frame.getContentPane().setBackground(mycolor);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
