@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
@@ -35,7 +36,7 @@ public class giaodien extends JFrame {
 	private JTextField txtd1;
 	private JTextField txtd2;
 	private JTextField txtd3;
-	
+	private char nganh='C';
 	private JTable table;
 	JComboBox comboBox = new JComboBox();
 	
@@ -157,27 +158,58 @@ public class giaodien extends JFrame {
         JRadioButton radioBtn2 = new JRadioButton("NỮ");
         radioBtn1.setBounds(200, 300, 60, 30);
         radioBtn2.setBounds(300, 300, 50, 30);
+        
+        radioBtn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radioBtn2.setSelected(isUndecorated());
+				
+			}
+		});
+        radioBtn2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radioBtn1.setSelected(isUndecorated());
+				
+			}
+		});  
         contentPane.add(radioBtn1);
+        radioBtn1.setSelected(isFocusable());
         contentPane.add(radioBtn2);
         
         JButton btnCNTT = new JButton("CNTT");
-        btnCNTT.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+        
         btnCNTT.setBackground(Color.LIGHT_GRAY);
         btnCNTT.setBounds(200, 355, 75, 28);
 		contentPane.add(btnCNTT);
         
         JButton btnKINHTE = new JButton("KINH TẾ");
-        btnKINHTE.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+
 
         btnKINHTE.setBounds(300, 355, 100, 28);
 		contentPane.add(btnKINHTE);
-
+		btnCNTT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnCNTT.setBackground(Color.LIGHT_GRAY);
+				btnKINHTE.setBackground(null);
+				lbl6.setText("ĐIỂM HTML");
+				lbl7.setText("ĐIỂM CSS");
+				lbl8.setText("ĐIỂM JAVA");
+				nganh='C';
+			}
+		});
+		btnKINHTE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnKINHTE.setBackground(Color.LIGHT_GRAY);
+				btnCNTT.setBackground(null);
+				lbl6.setText("ĐIỂM MARKETING");
+				lbl7.setText("ĐIỂM NLKT");
+				lbl8.setText("ĐIỂM KINH TẾ VĨ MÔ");
+				nganh='K';
+			}
+		});
         
 
         
@@ -222,7 +254,27 @@ public class giaodien extends JFrame {
 		 JButton btnTHEM = new JButton("THÊM");
 		 btnTHEM.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				}
+					if(txtmasv.getText().isEmpty() || txthoten.getText().isEmpty() || txtngaysinh.getText().isEmpty() || txtd2.getText().isEmpty() || txtd3.getText().isEmpty() || txtd1.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(contentPane,
+				                "VUI LÒNG NHẬP HẾT THÔNG TIN TRƯỚC KHI THÊM",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+				    }
+					else if(txtmasv.getText().toString().charAt(0) != 'C'&&txtmasv.getText().toString().charAt(0) != 'c'&& txtmasv.getText().toString().charAt(0) != 'k'&& txtmasv.getText().toString().charAt(0) != 'K' ) {
+						JOptionPane.showMessageDialog(contentPane,
+				                "MÃ SINH VIÊN PHẢI BẮT ĐẦU BẰNG CÁC KÝ TỰ [C,c,K,K]",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+					}
+					else if(txtmasv.getText().toString().toUpperCase().charAt(0) != nganh ) {
+						JOptionPane.showMessageDialog(contentPane,
+				                "MÃ SINH VIÊN PHẢI TRÙNG VỚI NGÀNH BẠN CHỌN",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						///code
+					}
+					}
 			});
 
 		 btnTHEM.setBounds(200, 625, 75, 28);
