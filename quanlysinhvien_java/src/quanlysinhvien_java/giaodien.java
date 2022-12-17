@@ -366,6 +366,10 @@ public class giaodien extends JFrame {
 			 JButton btnthoat = new JButton("THOÁT");
 			 btnthoat.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						int resp = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit?", JOptionPane.YES_NO_OPTION);
+					    if (resp == JOptionPane.YES_OPTION) {
+					    	dispose();
+					    }
 					}
 				});
 			 btnthoat.setBounds(1350, 700, 100, 28);
@@ -378,19 +382,6 @@ public class giaodien extends JFrame {
 				try {
 					giaodien frame = new giaodien();
 					frame.setVisible(true);
-					
-					frame.addWindowListener(new WindowAdapter() {
-					    public void windowClosing(WindowEvent evt) {
-					        int resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?",
-					            "Exit?", JOptionPane.YES_NO_OPTION);
-
-					        if (resp == JOptionPane.YES_OPTION) {
-					            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					        } else {
-					            frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-					        }
-					    }
-					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
