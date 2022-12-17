@@ -1,0 +1,14 @@
+package quanlysinhvien_java;
+
+public class Students {
+	private String studentID;
+    private String studentSpecialization;
+    private String studentName;
+    private String studentDateOfBirth;
+    private String studentGender;
+    private String score1;
+    private String score2;
+    private String score3;
+    private String studentGPA;
+    
+}

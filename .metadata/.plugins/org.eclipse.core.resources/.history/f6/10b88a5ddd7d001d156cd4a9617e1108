@@ -1,0 +1,74 @@
+package quanlysinhvien_java;
+
+public class Students {
+	private String studentID;
+    public String getStudentID() {
+		return studentID;
+	}
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
+	}
+	public String getStudentSpecialization() {
+		return studentSpecialization;
+	}
+	public void setStudentSpecialization(String studentSpecialization) {
+		this.studentSpecialization = studentSpecialization;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public String getStudentDateOfBirth() {
+		return studentDateOfBirth;
+	}
+	public void setStudentDateOfBirth(String studentDateOfBirth) {
+		this.studentDateOfBirth = studentDateOfBirth;
+	}
+	public String getStudentGender() {
+		return studentGender;
+	}
+	public void setStudentGender(String studentGender) {
+		this.studentGender = studentGender;
+	}
+	public String getScore1() {
+		return score1;
+	}
+	public void setScore1(String score1) {
+		this.score1 = score1;
+	}
+	public String getScore2() {
+		return score2;
+	}
+	public void setScore2(String score2) {
+		this.score2 = score2;
+	}
+	public String getScore3() {
+		return score3;
+	}
+	public void setScore3(String score3) {
+		this.score3 = score3;
+	}
+	public String getStudentGPA() {
+		return studentGPA;
+	}
+	public void setStudentGPA(String studentGPA) {
+		this.studentGPA = studentGPA;
+	}
+	public String getStudentRank() {
+		return studentRank;
+	}
+	public void setStudentRank(String studentRank) {
+		this.studentRank = studentRank;
+	}
+	private String studentSpecialization;
+    private String studentName;
+    private String studentDateOfBirth;
+    private String studentGender;
+    private String score1;
+    private String score2;
+    private String score3;
+    private String studentGPA;
+    private String studentRank;
+}

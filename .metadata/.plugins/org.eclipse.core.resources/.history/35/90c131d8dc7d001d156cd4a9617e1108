@@ -1,0 +1,8 @@
+package quanlysinhvien_java;
+
+public class Students {
+	private int id;
+    private String studentHo;
+    private String studentTen;
+    private String studentClass;
+}
