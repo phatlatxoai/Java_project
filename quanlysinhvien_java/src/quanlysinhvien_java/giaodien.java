@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
@@ -16,6 +18,8 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Iterator;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
@@ -372,10 +376,56 @@ public class giaodien extends JFrame {
 		 JButton btnSUA = new JButton("SỬA");
 		 btnSUA.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					int i = table.getSelectedRow();
+					model.setValueAt(txtmasv.getText(), i, 0);
+					model.setValueAt(txthoten.getText(), i, 2);
+					model.setValueAt(txtngaysinh.getText(), i, 3);
+					String gioitinh = "";
+					if(radioBtn1.isSelected()) {
+						gioitinh = "Nam";
+					}
+					if(radioBtn2.isSelected()) {
+						gioitinh = "Nữ";
+					}
+					model.setValueAt(gioitinh, i, 4);
+					model.setValueAt(khoa, i, 1);
+					model.setValueAt(txtd1.getText(), i, 5);
+					model.setValueAt(txtd2.getText(), i, 6);
+					model.setValueAt(txtd3.getText(), i, 7);
 				}
-			});
-
+		});
+		 table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+		        public void valueChanged(ListSelectionEvent event) {
+		            // do some actions here, for example
+		            // print first column value from selected row
+		        	txtmasv.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+		        	txthoten.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
+		        	txtngaysinh.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
+		        	txtd1.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
+		        	txtd2.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
+		        	txtd3.setText(table.getValueAt(table.getSelectedRow(), 7).toString());
+		        	if(table.getValueAt(table.getSelectedRow(), 4).toString() == "Nam") {
+		        		radioBtn1.setSelected(isFocusable());
+		        		radioBtn2.setSelected(isUndecorated());
+		        	}
+		        	else {
+		        		radioBtn2.setSelected(isFocusable());
+		        		radioBtn1.setSelected(isUndecorated());
+		        	}
+		        	
+		        	if(table.getValueAt(table.getSelectedRow(), 1).toString() == "CNTT") {
+		        		khoa = "CNTT";
+		        		btnCNTT.setBackground(Color.LIGHT_GRAY);
+						btnKINHTE.setBackground(null);
+		        	}
+		        	else {
+		        		khoa = "KINHTE";
+		        		btnKINHTE.setBackground(Color.LIGHT_GRAY);
+						btnCNTT.setBackground(null);
+		        	}
+		        }
+		    });
 		 btnSUA.setBounds(500, 625, 75, 28);
 		 contentPane.add(btnSUA);
 		 
