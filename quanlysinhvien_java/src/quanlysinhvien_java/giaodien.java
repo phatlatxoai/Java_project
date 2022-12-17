@@ -157,14 +157,27 @@ public class giaodien extends JFrame {
         JRadioButton radioBtn2 = new JRadioButton("NỮ");
         radioBtn1.setBounds(200, 300, 60, 30);
         radioBtn2.setBounds(300, 300, 50, 30);
+        radioBtn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radioBtn2.setSelected(isUndecorated());
+				
+			}
+		});
+        radioBtn2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radioBtn1.setSelected(isUndecorated());
+				
+			}
+		});        
         contentPane.add(radioBtn1);
         contentPane.add(radioBtn2);
         
         JButton btnCNTT = new JButton("CNTT");
-        btnCNTT.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+        
         btnCNTT.setBackground(Color.LIGHT_GRAY);
         btnCNTT.setBounds(200, 355, 75, 28);
 		contentPane.add(btnCNTT);
@@ -177,7 +190,24 @@ public class giaodien extends JFrame {
 
         btnKINHTE.setBounds(300, 355, 100, 28);
 		contentPane.add(btnKINHTE);
-
+		btnCNTT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnCNTT.setBackground(Color.LIGHT_GRAY);
+				btnKINHTE.setBackground(null);
+				lbl6.setText("ĐIỂM HTML");
+				lbl7.setText("ĐIỂM CSS");
+				lbl8.setText("ĐIỂM JAVA");
+			}
+		});
+		btnKINHTE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnKINHTE.setBackground(Color.LIGHT_GRAY);
+				btnCNTT.setBackground(null);
+				lbl6.setText("ĐIỂM MARKETING");
+				lbl7.setText("ĐIỂM NLKT");
+				lbl8.setText("ĐIỂM KINH TẾ VĨ MÔ");
+			}
+		});
         
 
         
