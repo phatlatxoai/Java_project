@@ -27,14 +27,14 @@ import java.awt.Graphics;
 
 @SuppressWarnings("serial")
 public class mainPage extends JFrame {
-	private JPanel contentPanel;
-	private JTextField txtSearchStudentID;
-	private JTextField txtStudentID;
-	private JTextField txtName;
-	private JTextField txtDateOfBirth;
-	private JTextField txtScore1;
-	private JTextField txtScore2;
-	private JTextField txtScore3;
+	private JPanel contentPane;
+	private JTextField txtmasvtim;
+	private JTextField txtmasv;
+	private JTextField txthoten;
+	private JTextField txtngaysinh;
+	private JTextField txtd1;
+	private JTextField txtd2;
+	private JTextField txtd3;
 	
 	private JTable table;
 	JComboBox<?> comboBox = new JComboBox<Object>();
@@ -54,15 +54,15 @@ public class mainPage extends JFrame {
 	public mainPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(20, 20, 1500, 800);
-		contentPanel = new JPanel();
-		contentPanel.setBackground(SystemColor.inactiveCaptionBorder);
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		setContentPane(contentPanel);
-		contentPanel.setLayout(null);
-		JScrollPane scrollPanel = new JScrollPane();
-		scrollPanel.setBounds(600, 150, 867, 307);
-		contentPanel.add(scrollPanel);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(600, 150, 867, 307);
+		contentPane.add(scrollPane);
 		
 		
 		///HEADER
@@ -71,34 +71,34 @@ public class mainPage extends JFrame {
 		lblNewLabel.setFont(fontLb);
 		lblNewLabel.setBounds(74, 20, 200, 30);
 		lblNewLabel.setForeground(Color.RED);
-		contentPanel.add(lblNewLabel);
+		contentPane.add(lblNewLabel);
 		
-		JLabel lbStudentID = new JLabel("MÃ SINH VIÊN");
-		lbStudentID.setFont(fontLb);
-		lbStudentID.setBounds(800, 30, 200, 30);
-		contentPanel.add(lbStudentID);
+		JLabel lbhdmsv = new JLabel("MÃ SINH VIÊN");
+		lbhdmsv.setFont(fontLb);
+		lbhdmsv.setBounds(800, 30, 200, 30);
+		contentPane.add(lbhdmsv);
 		
-		txtSearchStudentID = new JTextField();
-		txtSearchStudentID.setBounds(1000, 32, 200, 30);
-		contentPanel.add(txtSearchStudentID);
+		txtmasvtim = new JTextField();
+		txtmasvtim.setBounds(1000, 32, 200, 30);
+		contentPane.add(txtmasvtim);
 		
-		JButton btnSearch = new JButton("TÌM");
-		btnSearch.addActionListener(new ActionListener() {
+		JButton btntim = new JButton("TÌM");
+		btntim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSearch.setBackground(SystemColor.activeCaption);
-		btnSearch.setBounds(1220, 32, 75, 28);
-		contentPanel.add(btnSearch);
+		btntim.setBackground(SystemColor.activeCaption);
+		btntim.setBounds(1220, 32, 75, 28);
+		contentPane.add(btntim);
 		
-		JButton btnCancelSearch = new JButton("HỦY TÌM");
-		btnSearch.addActionListener(new ActionListener() {
+		JButton btnhuytim = new JButton("HỦY TÌM");
+		btntim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCancelSearch.setBackground(SystemColor.activeCaption);
-		btnCancelSearch.setBounds(1300, 32, 100, 28);
-		contentPanel.add(btnCancelSearch);
+		btnhuytim.setBackground(SystemColor.activeCaption);
+		btnhuytim.setBounds(1300, 32, 100, 28);
+		contentPane.add(btnhuytim);
 		///HEADER
 		
 		
@@ -109,7 +109,7 @@ public class mainPage extends JFrame {
 		lblmiddle1.setFont(fontLb2);
 		lblmiddle1.setBounds(50, 100, 250, 40);
 		lblmiddle1.setForeground(Color.RED);
-		contentPanel.add(lblmiddle1);
+		contentPane.add(lblmiddle1);
 		
 		
 		table = new JTable();
@@ -122,7 +122,7 @@ public class mainPage extends JFrame {
 			}
 		));
 		table.getColumnModel().getColumn(4).setPreferredWidth(81);
-		scrollPanel.setViewportView(table);
+		scrollPane.setViewportView(table);
 	}
 	
 	public static void main(String[] args) {
@@ -136,5 +136,6 @@ public class mainPage extends JFrame {
 				}
 			}
 		});
-	}
+
+}
 }

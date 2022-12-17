@@ -60,9 +60,9 @@ public class mainPage extends JFrame {
 		
 		setContentPane(contentPanel);
 		contentPanel.setLayout(null);
-		JScrollPane scrollPanel = new JScrollPane();
-		scrollPanel.setBounds(600, 150, 867, 307);
-		contentPanel.add(scrollPanel);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(600, 150, 867, 307);
+		contentPanel.add(scrollPane);
 		
 		
 		///HEADER
@@ -97,8 +97,8 @@ public class mainPage extends JFrame {
 			}
 		});
 		btnCancelSearch.setBackground(SystemColor.activeCaption);
-		btnCancelSearch.setBounds(1300, 32, 100, 28);
-		contentPanel.add(btnCancelSearch);
+		btnhuytim.setBounds(1300, 32, 100, 28);
+		contentPanel.add(btnhuytim);
 		///HEADER
 		
 		
@@ -122,7 +122,7 @@ public class mainPage extends JFrame {
 			}
 		));
 		table.getColumnModel().getColumn(4).setPreferredWidth(81);
-		scrollPanel.setViewportView(table);
+		scrollPane.setViewportView(table);
 	}
 	
 	public static void main(String[] args) {
@@ -136,5 +136,6 @@ public class mainPage extends JFrame {
 				}
 			}
 		});
-	}
+
+}
 }
