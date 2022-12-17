@@ -302,7 +302,9 @@ public class giaodien extends JFrame {
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			null,
+			new Object[][] {
+				{null, null, null, null, null, null, null, null, null, null},
+			},
 			new String[] {
 				"MÃ SV", "NGÀNH", "HỌ TÊN", "NGÀY SINH", "GIỚI TÍNH", "ĐIỂM 1", "ĐIỂM 2", "ĐIỂM 3", "ĐIỂM TB", "XẾP HẠNG"
 			}
