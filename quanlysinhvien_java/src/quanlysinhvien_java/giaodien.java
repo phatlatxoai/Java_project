@@ -12,11 +12,10 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
-<<<<<<< HEAD
-=======
+
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
->>>>>>> QuocVer2
+
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.Color;
@@ -29,10 +28,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-<<<<<<< HEAD
-=======
+
+
 import javax.swing.table.TableModel;
->>>>>>> QuocVer2
+
 import javax.swing.table.TableRowSorter;
 
 import java.awt.Font;
