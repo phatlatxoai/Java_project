@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
@@ -15,6 +16,8 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -375,6 +378,19 @@ public class giaodien extends JFrame {
 				try {
 					giaodien frame = new giaodien();
 					frame.setVisible(true);
+					
+					frame.addWindowListener(new WindowAdapter() {
+					    public void windowClosing(WindowEvent evt) {
+					        int resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?",
+					            "Exit?", JOptionPane.YES_NO_OPTION);
+
+					        if (resp == JOptionPane.YES_OPTION) {
+					            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					        } else {
+					            frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+					        }
+					    }
+					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
