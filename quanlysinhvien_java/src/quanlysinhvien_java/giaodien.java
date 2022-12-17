@@ -12,11 +12,15 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -404,6 +408,15 @@ public class giaodien extends JFrame {
 			JButton btnSXTEN = new JButton("TÊN");
 			btnSXTEN.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+                      table.setRowSorter(sorter);
+                      List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+                      int columnIndexToSort = 2;
+                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.DESCENDING));
+
+                      sorter.setSortKeys(sortKeys);
+                      sorter.sort();
 					}
 				});
 
@@ -413,7 +426,15 @@ public class giaodien extends JFrame {
 			 JButton btnDIEMTB = new JButton("ĐIỂM TB");
 			 btnDIEMTB.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+	                      table.setRowSorter(sorter);
+	                      List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+	                      int columnIndexToSort = 8;
+	                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+
+	                      sorter.setSortKeys(sortKeys);
+	                      sorter.sort();
 					}
 				});
 
@@ -426,12 +447,10 @@ public class giaodien extends JFrame {
 			 JButton btnlkCNTT = new JButton("CNTT");
 			 btnlkCNTT.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//tạo function lọc theo CNTT
 						DefaultTableModel dtm = (DefaultTableModel) table.getModel();
 						final TableRowSorter<TableModel> sorter = new TableRowSorter<>(dtm);
 						table.setRowSorter(sorter);
-						String txt = "CNTT"; //dữ liệu lọc mẫu = "CNTT"
-						//đếm row để thực hiện chức năng, nếu không có dữ liệu thì thông báo cho người dùng
+						String txt = "CNTT"; 
 			            if (table.getValueAt(0, 0) == null || table.getRowCount() < 1) {
 			            	JOptionPane.showMessageDialog(contentPane,
 					                "VUI LÒNG THÊM SINH VIÊN KHI LỌC",
