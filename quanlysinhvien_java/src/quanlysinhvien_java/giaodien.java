@@ -12,16 +12,27 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+<<<<<<< HEAD
+=======
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+>>>>>>> QuocVer2
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+<<<<<<< HEAD
+=======
+import javax.swing.table.TableModel;
+>>>>>>> QuocVer2
 import javax.swing.table.TableRowSorter;
 
 import java.awt.Font;
@@ -422,6 +433,21 @@ public class giaodien extends JFrame {
 			JButton btnSXTEN = new JButton("TÊN");
 			btnSXTEN.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+                      table.setRowSorter(sorter);
+                      List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+                      int columnIndexToSort = 2;
+                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+
+                      sorter.setSortKeys(sortKeys);
+                      sorter.sort();
+                      if (table.getValueAt(0, 0) == null || table.getRowCount() < 1) {
+			            	JOptionPane.showMessageDialog(contentPane,
+					                "VUI LÒNG THÊM SINH VIÊN KHI SẮP XẾP TÊN",
+					                "THÔNG BÁO",
+					                JOptionPane.INFORMATION_MESSAGE);
+			            }
 					}
 				});
 
@@ -431,7 +457,21 @@ public class giaodien extends JFrame {
 			 JButton btnDIEMTB = new JButton("ĐIỂM TB");
 			 btnDIEMTB.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+	                      table.setRowSorter(sorter);
+	                      List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+	                      int columnIndexToSort = 8;
+	                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+
+	                      sorter.setSortKeys(sortKeys);
+	                      sorter.sort();
+	                      if (table.getValueAt(0, 0) == null || table.getRowCount() < 1) {
+				            	JOptionPane.showMessageDialog(contentPane,
+						                "VUI LÒNG THÊM SINH VIÊN KHI LỌC ĐIỂM TB",
+						                "THÔNG BÁO",
+						                JOptionPane.INFORMATION_MESSAGE);
+				            }
 					}
 				});
 
@@ -444,6 +484,20 @@ public class giaodien extends JFrame {
 			 JButton btnlkCNTT = new JButton("CNTT");
 			 btnlkCNTT.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+						final TableRowSorter<TableModel> sorter = new TableRowSorter<>(dtm);
+						table.setRowSorter(sorter);
+						String txt = "CNTT"; 
+			            if (table.getValueAt(0, 0) == null || table.getRowCount() < 1) {
+			            	JOptionPane.showMessageDialog(contentPane,
+					                "VUI LÒNG THÊM SINH VIÊN KHI LỌC",
+					                "THÔNG BÁO",
+					                JOptionPane.INFORMATION_MESSAGE);
+			            }else {
+			            	sorter.setRowFilter(RowFilter.regexFilter(txt));
+			            }
+						
+						
 					}
 				});
 
@@ -453,6 +507,19 @@ public class giaodien extends JFrame {
 			 JButton btnlkKINHTE = new JButton("KINH TẾ");
 			 btnlkKINHTE.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+						final TableRowSorter<TableModel> sorter = new TableRowSorter<>(dtm);
+						table.setRowSorter(sorter);
+						
+						String txt = "KINH TẾ";
+						if (table.getValueAt(0, 0)== null || table.getRowCount() < 1) {
+			            	JOptionPane.showMessageDialog(contentPane,
+					                "VUI LÒNG THÊM SINH VIÊN KHI LỌC",
+					                "THÔNG BÁO",
+					                JOptionPane.INFORMATION_MESSAGE);
+			            }else {
+			            	sorter.setRowFilter(RowFilter.regexFilter(txt));
+			            }
 					}
 				});
 
@@ -462,6 +529,18 @@ public class giaodien extends JFrame {
 			 JButton btnlkall = new JButton("TẤT CẢ");
 			 btnlkall.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+						final TableRowSorter<TableModel> sorter = new TableRowSorter<>(dtm);
+						table.setRowSorter(sorter);
+						
+						if (table.getValueAt(0, 0)== null || table.getRowCount() < 1) {
+			            	JOptionPane.showMessageDialog(contentPane,
+					                "VUI LÒNG THÊM SINH VIÊN KHI LỌC",
+					                "THÔNG BÁO",
+					                JOptionPane.INFORMATION_MESSAGE);
+			            }else {
+			            	sorter.setRowFilter(null);
+			            }
 					}
 				});
 
