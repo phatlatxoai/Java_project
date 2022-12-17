@@ -100,7 +100,7 @@ public class giaodien extends JFrame {
 		contentPane.add(btnhuytim);
 		///HEADER
 		
-		
+		sdasd
 		
 		///MIDDLE
 		JLabel lblmiddle1 = new JLabel("THÔNG TIN SINH VIÊN");
