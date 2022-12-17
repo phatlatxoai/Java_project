@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;quanlysinhvien_java.giaodien&apos; to &apos;mainPage&apos;&#x0D;&#x0A;- Original project: &apos;quanlysinhvien_java&apos;&#x0D;&#x0A;- Original element: &apos;quanlysinhvien_java.giaodien&apos;&#x0D;&#x0A;- Renamed element: &apos;quanlysinhvien_java.mainPage&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;giaodien&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;quanlysinhvien_java{giaodien.java[giaodien" matchStrategy="1" name="mainPage" qualified="false" references="true" similarDeclarations="false" stamp="1671261657565" textual="false" version="1.0"/>
+</session>
