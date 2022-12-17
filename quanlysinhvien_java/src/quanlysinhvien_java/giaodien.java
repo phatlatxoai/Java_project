@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -47,6 +48,7 @@ public class giaodien extends JFrame {
 		super.paint(g);
 		g.setColor(Color.BLACK);
 		g.drawLine(50, 125, 1400, 125);
+		g.drawLine(50, 600, 1400, 600);
 
 	}
 	
@@ -86,7 +88,6 @@ public class giaodien extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btntim.setBackground(SystemColor.activeCaption);
 		btntim.setBounds(1220, 32, 75, 28);
 		contentPane.add(btntim);
 		
@@ -95,7 +96,6 @@ public class giaodien extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnhuytim.setBackground(SystemColor.activeCaption);
 		btnhuytim.setBounds(1300, 32, 100, 28);
 		contentPane.add(btnhuytim);
 		///HEADER
@@ -110,6 +110,96 @@ public class giaodien extends JFrame {
 		lblmiddle1.setForeground(Color.RED);
 		contentPane.add(lblmiddle1);
 		
+		JLabel lbl1 = new JLabel("MÃ SINH VIÊN");
+		lbl1.setBounds(50, 150, 250, 40);
+		contentPane.add(lbl1);
+		
+		JLabel lbl2 = new JLabel("HỌ TÊN");
+		lbl2.setBounds(50, 200, 250, 40);
+		contentPane.add(lbl2);
+		
+		JLabel lbl3 = new JLabel("NGÀY SINH");
+		lbl3.setBounds(50, 250, 250, 40);
+		contentPane.add(lbl3);
+		
+		JLabel lbl4 = new JLabel("GIỚI TÍNH");
+		lbl4.setBounds(50, 300, 250, 40);
+		contentPane.add(lbl4);
+		
+		JLabel lbl5 = new JLabel("CHUYÊN NGÀNH");
+		lbl5.setBounds(50, 350, 250, 40);
+		contentPane.add(lbl5);
+		JLabel lbl6 = new JLabel("ĐIỂM HTML");
+		lbl6.setBounds(75, 400, 250, 40);
+		contentPane.add(lbl6);
+		JLabel lbl7 = new JLabel("ĐIỂM CSS");
+		lbl7.setBounds(75, 425, 250, 40);
+		contentPane.add(lbl7);
+		JLabel lbl8= new JLabel("CHUYÊN JAVA");
+		lbl8.setBounds(75, 450, 250, 40);
+		contentPane.add(lbl8);
+		
+		txtmasv = new JTextField();
+		txtmasv.setBounds(200, 155, 150, 30);
+		contentPane.add(txtmasv);
+		
+		txthoten = new JTextField();
+		txthoten.setBounds(200, 205, 150, 30);
+		contentPane.add(txthoten);
+		
+		txtngaysinh = new JTextField();
+		txtngaysinh.setBounds(200, 255, 150, 30);
+		contentPane.add(txtngaysinh);
+		
+		
+		
+		JRadioButton radioBtn1 = new JRadioButton("NAM");
+        JRadioButton radioBtn2 = new JRadioButton("NỮ");
+        radioBtn1.setBounds(200, 300, 60, 30);
+        radioBtn2.setBounds(300, 300, 50, 30);
+        contentPane.add(radioBtn1);
+        contentPane.add(radioBtn2);
+        
+        JButton btnCNTT = new JButton("CNTT");
+        btnCNTT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+        btnCNTT.setBackground(Color.LIGHT_GRAY);
+        btnCNTT.setBounds(200, 355, 75, 28);
+		contentPane.add(btnCNTT);
+        
+        JButton btnKINHTE = new JButton("KINH TẾ");
+        btnKINHTE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+
+        btnKINHTE.setBounds(300, 355, 100, 28);
+		contentPane.add(btnKINHTE);
+
+        
+
+        
+        txtd1 = new JTextField();
+        txtd1.setBounds(200, 408, 50, 25);
+		contentPane.add(txtd1);
+		
+        txtd2 = new JTextField();
+        txtd2.setBounds(200, 433, 50, 25);
+		contentPane.add(txtd2);
+		
+        txtd3 = new JTextField();
+        txtd3.setBounds(200, 458, 50, 25);
+		contentPane.add(txtd3);
+		
+		JLabel lblmiddle2 = new JLabel("DANH SÁCH SINH VIÊN");
+
+		lblmiddle2.setFont(fontLb2);
+		lblmiddle2.setBounds(900, 100, 250, 40);
+		lblmiddle2.setForeground(Color.RED);
+		contentPane.add(lblmiddle2);
+		
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -122,6 +212,131 @@ public class giaodien extends JFrame {
 		));
 		table.getColumnModel().getColumn(4).setPreferredWidth(81);
 		scrollPane.setViewportView(table);
+		///MIDDLE
+		
+		
+		
+		
+		
+		///FOOTER
+		 JButton btnTHEM = new JButton("THÊM");
+		 btnTHEM.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+
+		 btnTHEM.setBounds(200, 625, 75, 28);
+		 contentPane.add(btnTHEM);
+		 
+		 JButton btnXOA = new JButton("XÓA");
+		 btnXOA.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+
+		 btnXOA.setBounds(350, 625, 75, 28);
+		 contentPane.add(btnXOA);
+		 
+		 JButton btnSUA = new JButton("SỬA");
+		 btnSUA.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+
+		 btnSUA.setBounds(500, 625, 75, 28);
+		 contentPane.add(btnSUA);
+		 
+		 JButton btnDOC = new JButton("ĐỌC FILE");
+		 btnDOC.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+
+		 btnDOC.setBounds(200, 675, 100, 28);
+		 contentPane.add(btnDOC);
+		 
+		 JButton btnGHI = new JButton("GHI FILE");
+		 btnGHI.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+
+		 btnGHI.setBounds(350, 675, 100, 28);
+		 contentPane.add(btnGHI);
+		 
+		 JButton btnCAPNHAT = new JButton("CẬP NHẬT FILE");
+		 btnCAPNHAT.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+
+		 btnCAPNHAT.setBounds(500, 675, 150, 28);
+		 contentPane.add(btnCAPNHAT);
+		 
+		 
+		 JLabel lbl10 = new JLabel("SẮP XẾP");
+			lbl10.setBounds(800, 620, 250, 40);
+			contentPane.add(lbl10);
+			
+			JLabel lbl11 = new JLabel("LIỆT KÊ");
+			lbl11.setBounds(800, 670, 250, 40);
+			contentPane.add(lbl11);
+			
+			JButton btnSXTEN = new JButton("TÊN");
+			btnSXTEN.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+
+			btnSXTEN.setBounds(900, 625, 75, 28);
+			 contentPane.add(btnSXTEN);
+			 
+			 JButton btnDIEMTB = new JButton("ĐIỂM TB");
+			 btnDIEMTB.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+
+			 btnDIEMTB.setBounds(1050, 625, 100, 28);
+			 contentPane.add(btnDIEMTB);
+			 
+			 
+			 
+			 
+			 JButton btnlkCNTT = new JButton("CNTT");
+			 btnlkCNTT.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+
+			 btnlkCNTT.setBounds(900, 675, 100, 28);
+			 contentPane.add(btnlkCNTT);
+			 
+			 JButton btnlkKINHTE = new JButton("KINH TẾ");
+			 btnlkKINHTE.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+
+			 btnlkKINHTE.setBounds(1050, 675, 100, 28);
+			 contentPane.add(btnlkKINHTE);
+
+			 JButton btnlkall = new JButton("TẤT CẢ");
+			 btnlkall.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+
+			 btnlkall.setBounds(1220, 675, 100, 28);
+			 contentPane.add(btnlkall);
+			 
+			 JButton btnthoat = new JButton("THOÁT");
+			 btnthoat.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+			 btnthoat.setBounds(1350, 700, 100, 28);
+			 contentPane.add(btnthoat);
 	}
 	
 	public static void main(String[] args) {
