@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-INDEX VERSION 1.131+C:\VLU\Java_project\.metadata\.plugins\org.eclipse.jdt.core
-=======
-INDEX VERSION 1.131+D:\DH VLU\QLSV\Java_project\.metadata\.plugins\org.eclipse.jdt.core
-339143917.index
->>>>>>> f4a0ae0bdc9e7b8dea42dc7a8dc134f279132bd5
-1865797976.index
