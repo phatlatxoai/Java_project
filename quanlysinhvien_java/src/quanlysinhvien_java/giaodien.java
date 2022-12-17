@@ -352,10 +352,13 @@ public class giaodien extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
 					try {
-						int warn = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xoá dòng đã chọn?", "Exit?", JOptionPane.YES_NO_CANCEL_OPTION);
+						int warn = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xoá dòng đã chọn?", "Message", JOptionPane.YES_NO_CANCEL_OPTION);
 					    if (warn == JOptionPane.YES_OPTION) {
+					    	int column = 0;
 					    	int SelectRowIndex = table.getSelectedRow();
+					    	String value = table.getModel().getValueAt(SelectRowIndex, column).toString();
 							model.removeRow(SelectRowIndex);
+							JOptionPane.showConfirmDialog(null, "Bạn đã xoá thành công sinh viên " + value, "Message", JOptionPane.DEFAULT_OPTION);
 					    }
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Vui lòng chọn sinh viên để xoá");
@@ -369,6 +372,7 @@ public class giaodien extends JFrame {
 		 JButton btnSUA = new JButton("SỬA");
 		 btnSUA.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
 				}
 			});
 
@@ -378,6 +382,7 @@ public class giaodien extends JFrame {
 		 JButton btnDOC = new JButton("ĐỌC FILE");
 		 btnDOC.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
 				}
 			});
 
