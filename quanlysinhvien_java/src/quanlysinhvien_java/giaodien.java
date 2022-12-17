@@ -16,6 +16,7 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -349,6 +350,16 @@ public class giaodien extends JFrame {
 		 JButton btnXOA = new JButton("XÓA");
 		 btnXOA.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					try {
+						int warn = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xoá dòng đã chọn?", "Exit?", JOptionPane.YES_NO_CANCEL_OPTION);
+					    if (warn == JOptionPane.YES_OPTION) {
+					    	int SelectRowIndex = table.getSelectedRow();
+							model.removeRow(SelectRowIndex);
+					    }
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Vui lòng chọn sinh viên để xoá");
+					}
 				}
 			});
 
