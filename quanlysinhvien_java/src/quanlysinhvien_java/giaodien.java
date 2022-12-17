@@ -393,6 +393,9 @@ public class giaodien extends JFrame {
 					model.setValueAt(txtd1.getText(), i, 5);
 					model.setValueAt(txtd2.getText(), i, 6);
 					model.setValueAt(txtd3.getText(), i, 7);
+					
+					//Mai add thêm JOptionPane.showConfirmDialog vào
+					
 				}
 		});
 		 table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
