@@ -413,10 +413,16 @@ public class giaodien extends JFrame {
                       List<RowSorter.SortKey> sortKeys = new ArrayList<>();
 
                       int columnIndexToSort = 2;
-                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.DESCENDING));
+                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
 
                       sorter.setSortKeys(sortKeys);
                       sorter.sort();
+                      if (table.getValueAt(0, 0) == null || table.getRowCount() < 1) {
+			            	JOptionPane.showMessageDialog(contentPane,
+					                "VUI LÒNG THÊM SINH VIÊN KHI SẮP XẾP TÊN",
+					                "THÔNG BÁO",
+					                JOptionPane.INFORMATION_MESSAGE);
+			            }
 					}
 				});
 
@@ -435,6 +441,12 @@ public class giaodien extends JFrame {
 
 	                      sorter.setSortKeys(sortKeys);
 	                      sorter.sort();
+	                      if (table.getValueAt(0, 0) == null || table.getRowCount() < 1) {
+				            	JOptionPane.showMessageDialog(contentPane,
+						                "VUI LÒNG THÊM SINH VIÊN KHI LỌC ĐIỂM TB",
+						                "THÔNG BÁO",
+						                JOptionPane.INFORMATION_MESSAGE);
+				            }
 					}
 				});
 
