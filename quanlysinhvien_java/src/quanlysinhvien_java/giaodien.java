@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -53,7 +55,7 @@ public class giaodien extends JFrame {
 	private JTextField txtd1;
 	private JTextField txtd2;
 	private JTextField txtd3;
-	
+	int rowselected = -1;
 	private JTable table;
 	JComboBox comboBox = new JComboBox();
 	
@@ -389,9 +391,67 @@ public class giaodien extends JFrame {
 		 btnXOA.setBounds(350, 625, 75, 28);
 		 contentPane.add(btnXOA);
 		 
+		 table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			 @Override
+			 public void valueChanged(ListSelectionEvent e) {
+				 // TODO Auto-generated method stub
+				 rowselected = table.getSelectedRow();
+				 System.out.println(rowselected);
+				 
+			 }
+		 });
 		 JButton btnSUA = new JButton("SỬA");
+		 
 		 btnSUA.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					int resp = JOptionPane.showConfirmDialog(null, "Bạn có thay đổi dữ liệu không ?", "Sửa?", JOptionPane.YES_NO_OPTION);
+				    if (resp == JOptionPane.YES_OPTION) {
+				    	String mssv  = txtmasv.getText().toString();
+				    	String hoten = txthoten.getText().toString();
+				    	String ngaysinh = txtngaysinh.getText().toString();
+				    	float  diem1 = Float.parseFloat(txtd1.getText().toString());
+				    	float  diem2 = Float.parseFloat(txtd2.getText().toString());
+				    	float  diem3 = Float.parseFloat(txtd3.getText().toString());
+				    	String gioitinh = "";
+				    	if(radioBtn1.isSelected()) {
+				    		gioitinh = "Nam";
+				    	}
+				    	if(radioBtn2.isSelected()) {
+				    		gioitinh = "Nữ";
+				    	}
+				    	SinhvienModel sv = new SinhvienModel(mssv, khoa, hoten, ngaysinh, gioitinh, diem1, diem2, diem3);
+				    	DefaultTableModel model = (DefaultTableModel) table.getModel();
+				    	model.setValueAt(sv.getMssv(), rowselected, 0);
+				    	model.setValueAt(sv.getCnghanh(), rowselected, 1);
+				    	model.setValueAt(sv.getHoten(), rowselected, 2);
+				    	model.setValueAt(sv.getNsinh(), rowselected, 3);
+				    	model.setValueAt(sv.getGtinh(), rowselected, 4);
+				    	model.setValueAt(sv.getDiem1(), rowselected, 5);
+				    	model.setValueAt(sv.getDiem2(), rowselected, 6);
+				    	model.setValueAt(sv.getDiem3(), rowselected, 7);
+				    	model.setValueAt(sv.getDiemtb(), rowselected, 8);
+				    	model.setValueAt(sv.getXephang(), rowselected, 9);
+				    	JOptionPane.showMessageDialog(contentPane,
+				                "Cập nhật thành công",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+				    	
+				    	txtmasv.setText(null);
+						txthoten.setText(null);
+						txtngaysinh.setText(null);
+						txtd1.setText(null);
+						txtd2.setText(null);
+						txtd3.setText(null);
+						radioBtn1.setSelected(isUndecorated());
+						radioBtn2.setSelected(isUndecorated());
+						btnCNTT.setBackground(null);
+						btnKINHTE.setBackground(null);
+
+				    }else {
+				    	
+				    }
+					
+					
 				}
 			});
 
@@ -423,9 +483,15 @@ public class giaodien extends JFrame {
 						Object[] tableLines = br.lines ().toArray();
 						for (int i = 0; i < tableLines.length; i++)
 						{
+							
 							String line = tableLines [i].toString().trim();
 							String[] dataRow = line.split(";");
-							model.addRow (dataRow);
+							SinhvienModel sv = new SinhvienModel(dataRow[0], dataRow[1], dataRow[2], dataRow[3]
+									, dataRow[4], Float.parseFloat( dataRow[5])
+									,Float.parseFloat( dataRow[6]),Float.parseFloat( dataRow[7]));
+
+							Nhap(sv);
+							table.setModel(new DefaultTableModel(Vnoidung, Vtieude));
 						}
 						JOptionPane.showMessageDialog(contentPane,
 				                "Đọc thành công",
@@ -437,18 +503,8 @@ public class giaodien extends JFrame {
 						JOptionPane.showMessageDialog(contentPane,
 				                "Đọc không thành công",
 				                "THÔNG BÁO",
-				                JOptionPane.INFORMATION_MESSAGE);
-						
+				                JOptionPane.INFORMATION_MESSAGE);				
 					}
-					
-						
-						    
-						 
-					
-				
-					
-					
-
 				}
 			});
 
@@ -509,10 +565,45 @@ public class giaodien extends JFrame {
 		 btnGHI.setBounds(350, 675, 100, 28);
 		 contentPane.add(btnGHI);
 		 
-		 JButton btnCAPNHAT = new JButton("CẬP NHẬT FILE");
+		 JButton btnCAPNHAT = new JButton("Xem Thông tin");
 		 btnCAPNHAT.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				}
+					if (rowselected == -1) {
+						JOptionPane.showMessageDialog(contentPane,
+				                "BẠN CHƯA CHỌN SINH VIÊN ĐỂ CẬP NHẬP",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						
+						txtmasv.setText(table.getValueAt(rowselected, 0).toString());
+						txthoten.setText(table.getValueAt(rowselected, 2).toString());
+						txtngaysinh.setText(table.getValueAt(rowselected, 3).toString());
+						txtd1.setText(table.getValueAt(rowselected, 5).toString());
+						txtd2.setText(table.getValueAt(rowselected, 6).toString());
+						txtd3.setText(table.getValueAt(rowselected, 7).toString());
+						if(table.getValueAt(rowselected, 4).toString() == "Nam") {
+							radioBtn1.setSelected(isFocusable());
+							radioBtn2.setSelected(isUndecorated());
+						}
+						else {
+							radioBtn2.setSelected(isFocusable());
+							radioBtn1.setSelected(isUndecorated());
+						}
+						
+						if(table.getValueAt(rowselected, 1).toString() == "CNTT") {
+							khoa = "CNTT";
+							btnCNTT.setBackground(Color.LIGHT_GRAY);
+							btnKINHTE.setBackground(null);
+						}
+						else {
+							khoa = "KINH TẾ";
+							btnKINHTE.setBackground(Color.LIGHT_GRAY);
+							btnCNTT.setBackground(null);
+						}
+					}
+					
+		        }
+				
 			});
 
 		 btnCAPNHAT.setBounds(500, 675, 150, 28);
@@ -530,20 +621,22 @@ public class giaodien extends JFrame {
 			JButton btnSXTEN = new JButton("TÊN");
 			btnSXTEN.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
-                      table.setRowSorter(sorter);
-                      List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-
-                      int columnIndexToSort = 2;
-                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
-
-                      sorter.setSortKeys(sortKeys);
-                      sorter.sort();
-                      if (table.getValueAt(0, 0) == null || table.getRowCount() < 1) {
+						
+                      if ( table.getRowCount() == 0) {
 			            	JOptionPane.showMessageDialog(contentPane,
 					                "VUI LÒNG THÊM SINH VIÊN KHI SẮP XẾP TÊN",
 					                "THÔNG BÁO",
 					                JOptionPane.INFORMATION_MESSAGE);
+			            }else {
+			            	TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+		                      table.setRowSorter(sorter);
+		                      List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+		                      int columnIndexToSort = 2;
+		                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+
+		                      sorter.setSortKeys(sortKeys);
+		                      sorter.sort();
 			            }
 					}
 				});
@@ -554,20 +647,21 @@ public class giaodien extends JFrame {
 			 JButton btnDIEMTB = new JButton("ĐIỂM TB");
 			 btnDIEMTB.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
-	                      table.setRowSorter(sorter);
-	                      List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-
-	                      int columnIndexToSort = 8;
-	                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
-
-	                      sorter.setSortKeys(sortKeys);
-	                      sorter.sort();
-	                      if (table.getValueAt(0, 0) == null || table.getRowCount() < 1) {
+						
+	                      if ( table.getRowCount() == 0) {
 				            	JOptionPane.showMessageDialog(contentPane,
-						                "VUI LÒNG THÊM SINH VIÊN KHI LỌC ĐIỂM TB",
+						                "VUI LÒNG THÊM SINH VIÊN KHI SẮP XẾP TÊN",
 						                "THÔNG BÁO",
 						                JOptionPane.INFORMATION_MESSAGE);
+				            }else {
+				            	TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+			                      table.setRowSorter(sorter);
+			                      List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+			                      int columnIndexToSort = 8;
+			                      sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+			                      sorter.setSortKeys(sortKeys);
+			                      sorter.sort();
 				            }
 					}
 				});
@@ -585,13 +679,12 @@ public class giaodien extends JFrame {
 						final TableRowSorter<TableModel> sorter = new TableRowSorter<>(dtm);
 						table.setRowSorter(sorter);
 						String txt = "CNTT"; 
-			            if (table.getValueAt(0, 0) == null || table.getRowCount() < 1) {
+						sorter.setRowFilter(RowFilter.regexFilter(txt));
+			            if (table.getRowCount() == 0) {
 			            	JOptionPane.showMessageDialog(contentPane,
 					                "VUI LÒNG THÊM SINH VIÊN KHI LỌC",
 					                "THÔNG BÁO",
 					                JOptionPane.INFORMATION_MESSAGE);
-			            }else {
-			            	sorter.setRowFilter(RowFilter.regexFilter(txt));
 			            }
 						
 						
@@ -607,15 +700,13 @@ public class giaodien extends JFrame {
 						DefaultTableModel dtm = (DefaultTableModel) table.getModel();
 						final TableRowSorter<TableModel> sorter = new TableRowSorter<>(dtm);
 						table.setRowSorter(sorter);
-						
 						String txt = "KINH TẾ";
-						if (table.getValueAt(0, 0)== null || table.getRowCount() < 1) {
+						sorter.setRowFilter(RowFilter.regexFilter(txt));
+						if (table.getRowCount() == 0) {
 			            	JOptionPane.showMessageDialog(contentPane,
 					                "VUI LÒNG THÊM SINH VIÊN KHI LỌC",
 					                "THÔNG BÁO",
 					                JOptionPane.INFORMATION_MESSAGE);
-			            }else {
-			            	sorter.setRowFilter(RowFilter.regexFilter(txt));
 			            }
 					}
 				});
@@ -629,14 +720,14 @@ public class giaodien extends JFrame {
 						DefaultTableModel dtm = (DefaultTableModel) table.getModel();
 						final TableRowSorter<TableModel> sorter = new TableRowSorter<>(dtm);
 						table.setRowSorter(sorter);
-						
-						if (table.getValueAt(0, 0)== null || table.getRowCount() < 1) {
+						sorter.setRowFilter(null);
+						if (table.getRowCount() == 0) {
 			            	JOptionPane.showMessageDialog(contentPane,
 					                "VUI LÒNG THÊM SINH VIÊN KHI LỌC",
 					                "THÔNG BÁO",
 					                JOptionPane.INFORMATION_MESSAGE);
 			            }else {
-			            	sorter.setRowFilter(null);
+			            	
 			            }
 					}
 				});
@@ -647,6 +738,10 @@ public class giaodien extends JFrame {
 			 JButton btnthoat = new JButton("THOÁT");
 			 btnthoat.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						int resp = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát không ?", "Thoát?", JOptionPane.YES_NO_OPTION);
+					    if (resp == JOptionPane.YES_OPTION) {
+					    	dispose();
+					    }
 					}
 				});
 			 btnthoat.setBounds(1350, 700, 100, 28);
