@@ -6,9 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -21,6 +23,11 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -312,9 +319,7 @@ public class giaodien extends JFrame {
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null, null, null},
-			},
+			null,
 			new String[] {
 				"MÃ SV", "NGÀNH", "HỌ TÊN", "NGÀY SINH", "GIỚI TÍNH", "ĐIỂM 1", "ĐIỂM 2", "ĐIỂM 3", "ĐIỂM TB", "XẾP HẠNG"
 			}
@@ -396,15 +401,108 @@ public class giaodien extends JFrame {
 		 JButton btnDOC = new JButton("ĐỌC FILE");
 		 btnDOC.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+						
+					
+					try {
+						  //  Block of code to try
+						JFileChooser c = new JFileChooser();
+						FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+						c.setFileFilter(filter);
+						int rVal = c.showOpenDialog(null);
+						String filename = "";
+					    String dir = "";
+						if (rVal == JFileChooser.APPROVE_OPTION) {
+						     filename = c.getSelectedFile().getName();
+						     dir = c.getCurrentDirectory().toString();
+						}
+						
+						String filePath = dir+"\\"+filename;
+						BufferedReader br = new BufferedReader (new FileReader (filePath));
+						
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						Object[] tableLines = br.lines ().toArray();
+						for (int i = 0; i < tableLines.length; i++)
+						{
+							String line = tableLines [i].toString().trim();
+							String[] dataRow = line.split(";");
+							model.addRow (dataRow);
+						}
+						JOptionPane.showMessageDialog(contentPane,
+				                "Đọc thành công",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);			
+					}
+					catch(Exception e1) {
+					  //  Block of code to handle errors
+						JOptionPane.showMessageDialog(contentPane,
+				                "Đọc không thành công",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+						
+					}
+					
+						
+						    
+						 
+					
+				
+					
+					
+
 				}
 			});
 
 		 btnDOC.setBounds(200, 675, 100, 28);
 		 contentPane.add(btnDOC);
-		 
 		 JButton btnGHI = new JButton("GHI FILE");
 		 btnGHI.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
+					if (table.getRowCount() == 0) {
+						JOptionPane.showMessageDialog(contentPane,
+				                "VUI LÒNG THÊM SINH VIÊN",
+				                "THÔNG BÁO",
+				                JOptionPane.INFORMATION_MESSAGE);
+
+						
+					}else {
+						 try {
+								JFileChooser c = new JFileChooser();
+								FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+								c.setFileFilter(filter);
+								int rVal = c.showSaveDialog(null);
+								String filename = "";
+							    String dir = "";
+								if (rVal == JFileChooser.APPROVE_OPTION) {
+								      filename = c.getSelectedFile().getName();
+								      dir = c.getCurrentDirectory().toString();
+								 }
+								String filePath = dir+"\\"+filename+".txt";
+								File file = new File (filePath);
+								
+								FileWriter fw = new FileWriter (file);
+								BufferedWriter bw = new BufferedWriter (fw);
+								for (int i=0; i < table.getRowCount(); i++) { //rows
+									for (int j = 0; j < table.getColumnCount(); j++) { //columns
+										bw.write(table.getValueAt (i, j).toString()+";");
+									}
+									bw.newLine();
+								}
+								bw.close();
+								fw.close();
+								JOptionPane.showMessageDialog(contentPane,
+						                "GHI THÀNH CÔNG",
+						                "THÔNG BÁO",
+						                JOptionPane.INFORMATION_MESSAGE);
+						} catch (Exception e2) {
+							// TODO: handle exception
+							JOptionPane.showMessageDialog(contentPane,
+					                "GHI KHÔNG THÀNH CÔNG",
+					                "THÔNG BÁO",
+					                JOptionPane.INFORMATION_MESSAGE);
+						}
+					
+					}
 				}
 			});
 
