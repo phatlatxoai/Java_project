@@ -2,5 +2,10 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
     <fullyQualifiedTypeName name="java.awt.event.WindowEvent"/>
+    <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
+    <fullyQualifiedTypeName name="javax.swing.event.ListSelectionListener"/>
+    <fullyQualifiedTypeName name="javax.swing.event.ListSelectionEvent"/>
 </qualifiedTypeNameHistroy>
